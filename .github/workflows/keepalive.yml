@@ -1,0 +1,35 @@
+name: Keepalive
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+    steps:
+      - name: Re-enable all workflows
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const wfs = await github.rest.actions.listRepoWorkflows({
+              owner: context.repo.owner, repo: context.repo.repo
+            });
+            let reEnabled = 0;
+            for (const wf of wfs.data.workflows) {
+              if (wf.state !== 'active') {
+                await github.rest.actions.enableWorkflow({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  workflow_id: wf.id
+                });
+                reEnabled++;
+                console.log('Re-enabled:', wf.name);
+              }
+            }
+            console.log(`Keepalive done. Re-enabled ${reEnabled}/${wfs.data.total_count}. ${new Date().toISOString()}`);
