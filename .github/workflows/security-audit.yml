@@ -1,0 +1,43 @@
+name: Security Audit
+
+on:
+  schedule:
+    - cron: '0 2 * * 0'  # Weekly at 2 AM UTC
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: npm audit
+        run: npm audit --audit-level=moderate
+
+      - name: Dependency review
+        uses: actions/dependency-review-action@v4
+
+      - name: Check for known vulnerabilities
+        run: |
+          npm ls --depth=0 2>/dev/null || true
+          echo "Review npm audit output above for details"
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+        env:
+          CI: true
