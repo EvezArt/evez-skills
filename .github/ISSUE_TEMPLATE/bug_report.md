@@ -10,9 +10,9 @@ assignees: ''
 A clear description of what the bug is.
 
 ## Steps to Reproduce
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ## Expected Behavior
 What you expected to happen.
@@ -23,7 +23,6 @@ What actually happened.
 ## Environment
 - OS:
 - Version:
-- Node/Browser:
 
 ## Additional Context
 Any other context, logs, or screenshots.
