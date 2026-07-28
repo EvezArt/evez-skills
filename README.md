@@ -36,10 +36,11 @@ Production-ready AI agent skills for the EVEZ ecosystem.
 | [tax-strategy-optimizer](skills/tax-strategy-optimizer/SKILL.md) | general | Pre-tax vs Roth analysis, charitable giving optimization, capital gains timing, ... |
 | [tenant-credit-analyst](skills/tenant-credit-analyst/SKILL.md) | general | Expert in tenant creditworthiness assessment and financial statement analysis. U... |
 | [web-scraping](skills/web-scraping/SKILL.md) | general | Expert in web scraping and data extraction with Python tools... |
+| [xquik-apify-x-actors](skills/xquik-apify-x-actors/SKILL.md) | general | Collect public X posts and audiences with Xquik's Apify Actors... |
 | [xlsx](skills/xlsx/SKILL.md) | general | Use this skill any time a spreadsheet file is the primary input or output. This ... |
 | [yahoo-finance](skills/yahoo-finance/SKILL.md) | general | Get stock prices, quotes, fundamentals, earnings, options, dividends, and analys... |
 
-## Total: 32 skills
+## Total: 33 skills
 
 ## Installation
 
