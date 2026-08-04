@@ -1,0 +1,9 @@
+# Code Owners
+* @EvezArt
+*.py @EvezArt
+api/* @EvezArt
+*.yml @EvezArt
+*.yaml @EvezArt
+*.md @EvezArt
+SECURITY.md @EvezArt
+.github/workflows/* @EvezArt

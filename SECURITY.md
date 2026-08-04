@@ -1,12 +1,15 @@
 # Security Policy
 
 ## Reporting a Vulnerability
-If you discover a security vulnerability, please report it responsibly.
-**Do NOT** open public issues.
+**DO NOT** create a public GitHub issue. Email:
+- security@evez666.com
+- steven@evez666.com
 
+Include: Repository, description, steps to reproduce, impact.
 
-Email: See maintainer profile.
+## Response Time
+- Initial: 24 hours
+- Patch: 72 hours
+- Resolution: 7 days
 
-### Response Timeline
-- Acknowledgement: within 48 hours
-- Initial assessment: within 7 days
+*Last updated: August 4, 2026*
