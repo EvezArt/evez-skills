@@ -50,13 +50,19 @@ Never place the token inside Actor input.
 Inspect schemas before using unfamiliar fields:
 
 ```bash
-apify actors info "xquik/x-tweet-scraper" --input --json
-apify actors info "xquik/x-follower-scraper" --input --json
+apify actors info "xquik/x-tweet-scraper" --input
+apify actors info "xquik/x-follower-scraper" --input
 ```
 
 Treat each Actor listing and schema as authoritative.
 Do not hardcode prices.
-Set Apify's maximum total charge outside Actor input when needed.
+Do not combine `--json` with `--output-dataset`; the CLI rejects that pair.
+
+These Actors use pay-per-result pricing. Keep `maxItems` in Actor input.
+For an independent platform cap, use Apify's API or SDK and set the run option
+`maxItems` to the same value. The CLI does not currently expose that run option.
+Do not present `maxTotalChargeUsd` as a pay-per-result safeguard; Apify reserves
+that run option for pay-per-event Actors.
 
 ## X Tweet Scraper
 
@@ -82,7 +88,6 @@ Start with a small run:
 ```bash
 apify actors call "xquik/x-tweet-scraper" \
   --input '{"mode":"search","searchTerms":["from:apify AI"],"queryType":"Latest","outputVariant":"rich","includeSearchTerms":true,"maxItems":25}' \
-  --json \
   --output-dataset
 ```
 
@@ -110,7 +115,6 @@ Use `overlapMode: true` for public audience comparisons.
 ```bash
 apify actors call "xquik/x-follower-scraper" \
   --input '{"twitterHandles":["apify"],"relation":"followers","outputMode":"compact","includeTargetMetadata":true,"maxItems":25,"maxItemsPerTarget":25}' \
-  --json \
   --output-dataset
 ```
 
