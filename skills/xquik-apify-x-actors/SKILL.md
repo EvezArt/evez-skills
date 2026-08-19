@@ -59,9 +59,9 @@ Do not hardcode prices.
 Do not combine `--json` with `--output-dataset`; the CLI rejects that pair.
 
 These Actors currently use `PAY_PER_EVENT`. Keep `maxItems` only in Actor input.
-Use the API or SDK run option `maxTotalChargeUsd` for a USD ceiling.
-Reject runs when pricing differs or the integration cannot enforce that ceiling.
-The CLI examples below cap results, not total charges.
+For a hard USD ceiling, use the API or SDK run option `maxTotalChargeUsd`.
+Reject hard-capped runs when pricing changes or ceiling enforcement is unavailable.
+The CLI examples require explicit manual approval. They cap results, not charges.
 
 ## X Tweet Scraper
 
@@ -81,8 +81,6 @@ Use `maxItemsPerTarget` only with explicit multi-target modes.
 Nonpositive per-target values are ignored.
 
 ### Search Public Posts
-
-This CLI example caps results, not total charges:
 
 ```bash
 apify actors call "xquik/x-tweet-scraper" \
