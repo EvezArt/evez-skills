@@ -58,11 +58,10 @@ Treat each Actor listing and schema as authoritative.
 Do not hardcode prices.
 Do not combine `--json` with `--output-dataset`; the CLI rejects that pair.
 
-These Actors use pay-per-result pricing. Keep `maxItems` in Actor input.
-For an independent platform cap, use Apify's API or SDK and set the run option
-`maxItems` to the same value. The CLI does not currently expose that run option.
-Do not present `maxTotalChargeUsd` as a pay-per-result safeguard; Apify reserves
-that run option for pay-per-event Actors.
+These Actors currently use `PAY_PER_EVENT`. Keep `maxItems` only in Actor input.
+Use the API or SDK run option `maxTotalChargeUsd` for a USD ceiling.
+Reject runs when pricing differs or the integration cannot enforce that ceiling.
+The CLI examples below cap results, not total charges.
 
 ## X Tweet Scraper
 
@@ -83,7 +82,7 @@ Nonpositive per-target values are ignored.
 
 ### Search Public Posts
 
-Start with a small run:
+This CLI example caps results, not total charges:
 
 ```bash
 apify actors call "xquik/x-tweet-scraper" \
@@ -129,7 +128,7 @@ Before every paid run, present:
 2. The public targets or search terms.
 3. The global result cap.
 4. Any per-target cap.
-5. The live pricing source.
+5. The live pricing model, event rates, and USD ceiling.
 
 Get explicit user approval before starting the run.
 Do not retry a partial paid run automatically.
